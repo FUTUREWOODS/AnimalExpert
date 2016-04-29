@@ -1,20 +1,20 @@
-############���s�t�@�C��####################
+実行ファイル
 watson5P.py
-  ....watson�ŉ����F�����A�����̓��e��Pepper�ɒ��点�A�܂�Pepper�̃}�C�N���X�g���[�~���O���ė���
+  ....watsonで音声認識し、かつその内容をPepperに喋らせ、またPepperのマイクをストリーミングして流す
 watson5G.py
-  ...watson�ŉ����F���̂�
+  ...watsonで音声認識のみ
 watson5Q.py
-  ...watson�ŉ����F�����s���A���P�ꂪ�u�`�[�Y�v�ł���΁A�ʐ^���B���ĕۑ�����Bopencv���K�v�B
+  ...watsonで音声認識を行い、かつ単語が「チーズ」であれば、写真を撮って保存する。opencvが必要。
 
 
 
-##########�ȉ��A�ˑ��t�@�C���B###############
+以下、依存ファイル達
 watsonStream.py
- ...watson�̖{�́B���A���^�C���ɔF��������ׂ�run()�ł܂�websocket���J���B
-    ���send()�ŉ����f�[�^�𑗂�ƁA_on_message()��Json�^�ŋA���Ă���̂ŕ����ɕϊ����ăt���O�𗧂Ă�.
+ ...watsonの本体。リアルタイムに認識させる為にrun()でまずwebsocketを開く。
+    後はsend()で音声データを送ると、_on_message()にJson型で帰ってくるので平文に変換してフラグを立てる.
 
 watsonC.py
- ...watson���ݍ��ރ��W���[���B�d�v�Ȃ̂�recognize_stream()�����ő���token�Ƃ�url�̕ϊ�������Ă邾���̃N���X�B
+ ...watsonを包み込むモジュール。重要なのはrecognize_stream()だけで他はtokenとかurlの変換をやってるだけのクラス。
 
 PepperStream.py
- ...Pepper�𒝂点����A�}�C�N�̃X�g���[�����s���N���X
+ ...Pepperを喋らせたり、マイクのストリームを行うクラス
