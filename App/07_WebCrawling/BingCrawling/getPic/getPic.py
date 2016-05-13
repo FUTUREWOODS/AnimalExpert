@@ -60,6 +60,6 @@ def bing_search(query):
 if __name__ == '__main__':
 
 	#set word
-	word = "アノウラ・フィスチュラタ"
+	word = "寿司"
 
 	bing_search(word)
