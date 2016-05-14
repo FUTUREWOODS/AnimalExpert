@@ -1654,7 +1654,7 @@ class MyClass(GeneratedClass):
         pass
 
     def onInput_onStart(self):
-        self.onStopped("テナガザル") #activate the output of the box
+        self.onStopped("トラ") #activate the output of the box
         #pass
 
     def onInput_onStop(self):
@@ -1674,8 +1674,8 @@ class MyClass(GeneratedClass):
                         <Link inputowner="0" indexofinput="4" outputowner="6" indexofoutput="3" />
                         <Link inputowner="8" indexofinput="2" outputowner="1" indexofoutput="4" />
                         <Link inputowner="0" indexofinput="4" outputowner="8" indexofoutput="4" />
-                        <Link inputowner="7" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="1" indexofinput="2" outputowner="7" indexofoutput="4" />
+                        <Link inputowner="7" indexofinput="2" outputowner="0" indexofoutput="2" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
