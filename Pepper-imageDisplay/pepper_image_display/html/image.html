@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!--template（IMAGE）-->
+
+    <meta charset="UTF-8">
+    <title>IMAGE DIPSLAY </title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=device-width,initial-scale = 1,minimum-scale = 1,maximum-scale = 1" />
+
+    <link media="all" type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script>
+        $(function display_image(){
+            var query = document.location.search.substring(1); //GET
+            if(query)
+                $("#image_main").attr("src", query);
+        })
+    </script>
+
+</head>
+
+<body>
+
+    <div id="txt02" class="wrapper">
+
+        <header>
+            イメージ
+        </header>
+
+        <article>
+            <div class="image">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="imagetext">
+                            <p>ここにtextが入ります</p>
+                            <p><strong>太字は&lt;strong&gt;タグ、</strong>
+                                <br />
+                                <small>小さな文字は&lt;small&gt;タグ、</small>
+                                <br />
+                                <em>斜体は&lt;em&gt;タグ</em>
+                                <br />で表示します。</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="imageimage">
+                            <img id="image_main" src="https://www.google.co.jp/images/nav_logo242_hr.png" />
+                            <!--画像は最大560px*680px-->
+                        </div>
+                    </div>
+                </div>
+                <!--row-->
+            </div>
+            <!--image-->
+        </article>
+
+    </div>
+    <!--wrapper-->
+
+</body>
+
+</html>
