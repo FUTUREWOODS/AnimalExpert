@@ -185,8 +185,8 @@ class MyClass(GeneratedClass):
                             <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
                         </Box>
                         <Link inputowner="8" indexofinput="2" outputowner="0" indexofoutput="2" />
-                        <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="23" indexofinput="2" outputowner="1" indexofoutput="3" />
+                        <Link inputowner="1" indexofinput="2" outputowner="8" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
