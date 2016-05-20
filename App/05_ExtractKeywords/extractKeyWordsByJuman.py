@@ -1,24 +1,20 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
-import cJuman
+
+from flask import Flask, render_template, request, redirect, url_for
 import types
+import cJuman
 
-
+TEXT_ENCODING = "utf-8"
+app = Flask(__name__)
+	
 class juman:
-
-	PARSE_TEXT_ENCODING = 'utf-8'
-	### Functions
+	
 	def __init__(self):
-		print ""
+		cJuman.init(['-B', '-e2'])
 
 	def extractKeyWords(self, txt, category):
-		cJuman.init(['-B', '-e2'])
 		node = self.parse(txt)
-		print "**Parse**"
-		print node
-		print "**Category**"
-		print category
-		print "**Keyword**"
 		wordsList = []
 		keywordList = []
 		categoryList = []
@@ -32,11 +28,9 @@ class juman:
 				keywordList = self.wikiWordsParse(wordsList[i],category)
 		
 		if len(keywordList) != 0:
-			print keywordList[0]
 			return keywordList[0]
 		else:
-			print "None"
-			return None
+			return "0"
 
 	def parse(self, txt):
 		node = cJuman.parse_opt([txt], cJuman.SKIP_NO_RESULT)
@@ -69,10 +63,14 @@ class juman:
 				categorylist = jumantxt.split(" ")
 				keywordlist.append(categorylist[0])
 		return keywordlist
-		
-		
-### Execute                                                   
-txt = "テナガザルが好きなんだ"
-category = "動物"
-j = juman()
-j.extractKeyWords(txt,category)
+
+@app.route('/entry/<string:txt>')
+def index(txt):
+        txt = txt.encode(TEXT_ENCODING)
+        category = "動物"
+        message = j.extractKeyWords(txt,category)
+        return message
+
+if __name__ == '__main__':
+        j = juman()
+        app.run(host='0.0.0.0') 
