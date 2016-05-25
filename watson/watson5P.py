@@ -14,7 +14,7 @@ import threading
 import time
 from naoqi import (ALProxy, ALBroker, ALModule)
 
-PEPPER_IP = "192.168.1.2"
+PEPPER_IP = "192.168.1.6"
 
 class WatsonMain():
 
@@ -54,7 +54,7 @@ if __name__ == '__main__':
  password = 'BSR0JXMftGa5'
  audio_path="C:\\Anaconda\\work\\audio\\temp.wav"
  CHUNK=2730
- RATE=8000
+ RATE=16000
  FORMAT = pyaudio.paInt16
  CHANNELS=1
  p=pyaudio.PyAudio()
@@ -69,22 +69,29 @@ if __name__ == '__main__':
  Wstream = watson.recognize_stream(token)
  myBroker = ALBroker("myBroker","0.0.0.0",0,PEPPER_IP,9559)
  PepperModule = PepperModuleClass("PepperModule")
- PepperModule.startRecord()
+ PepperModule.startMemory()
  h = WatsonMain(Wstream)
  time.sleep(3)
+ PepperModule.startRecord()
+ 
  while stream.is_active():
      try:
        input = stream.read(CHUNK,exception_on_overflow = False)
        output=PepperModule.inputBuff
-       stream.write(output)
-       h.send(input)
+       if len(output)>=1:
+           output2=np.array(output[:16000])
+           del PepperModule.inputBuff[:16000]
+           stream.write(output2.tostring())
+           if PepperModule.status=="running": #イベントが"runningだったら"
+               h.send(output2.tostring()) #watsonに送信
        txt,flag =h.Wstream.result()
        if flag==1:
-          print txt
-          PepperModule.talk(txt)
+         print txt
+         PepperModule.raiseEvent("recognized") #ここでイベントを”recognized”立てる
      except KeyboardInterrupt:
-       "終了中"
+       print "終了中"
        break
+ myBroker.shutdown()
  h.stop()
  stream.stop_stream()
  stream.close()

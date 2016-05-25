@@ -30,6 +30,7 @@
         <File name="index" src="html/index.html" />
         <File name="bootstrap.min" src="html/js/bootstrap.min.js" />
         <File name="jquery-1.12.3.min" src="html/js/jquery-1.12.3.min.js" />
+        <File name="" src="lib/.DS_Store" />
     </Resources>
     <Topics />
     <IgnoredPaths>
