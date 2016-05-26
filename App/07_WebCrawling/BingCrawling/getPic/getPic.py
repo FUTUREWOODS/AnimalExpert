@@ -1,15 +1,19 @@
 #coding:utf-8
+from flask import Flask, render_template, request, redirect, url_for
 import time 
 import os
 import requests
+import shutil
 
+TEXT_ENCODING = "utf-8"
+app = Flask(__name__)
 class GetPic:
 
 	def _init_(self):
 		print "" 
 
 	def bing_get_pic(self,query):
-		
+		urlList = []
 		#set URL
 		bing_url = 'https://api.datamarket.azure.com/Bing/Search/Image'
 
@@ -24,15 +28,17 @@ class GetPic:
 
 		#count the number of pictures
 		count = 1
-		
+	
+			
 		#make directory to save pictures
 		dirname = "./%s"%query
 		check = os.path.exists(dirname)
 		if check:
+			shutil.rmtree(dirname)
 			print "exist directory<%s>"%query
-		else:
-			os.mkdir(dirname)
-			   
+		
+		os.mkdir(dirname)
+		   
 	 
 		for item in r.json()['d']['results']:
 			time.sleep(3)
@@ -42,7 +48,9 @@ class GetPic:
 
 			if ext.lower() == '.jpg':    
 
-				print image_url,
+				#print image_url,
+
+				urlList.append(image_url)
 
 				r = requests.get(image_url)
 
@@ -55,21 +63,30 @@ class GetPic:
 				f.close()
 
 				print "...save", fname
-
+				
 				count += 1
 			
 				#get three pictures (changeabe)	
-				if count >= 4:
+				if count >= 3:
 					break		
-
-	 
+		return urlList
 
 	def bing_search(self, word):
-		self.bing_get_pic(word)
-		
-if __name__ == '__main__':
+		l = []
+		url = ""
+		l = self.bing_get_pic(word)
+		for i in range(len(l)):
+			url += l[i]
+			url += ","
+		return url
 
-	#set word
-	word = "アフリカゾウ"
+@app.route('/entry/<string:txt>')
+def index(txt):
+	url = ""
+        txt = txt.encode(TEXT_ENCODING)
+	url = gp.bing_search(txt)
+	return url	
+
+if __name__ == '__main__':
 	gp = GetPic()
-	gp.bing_search(word)
+	app.run(host='0.0.0.0')
