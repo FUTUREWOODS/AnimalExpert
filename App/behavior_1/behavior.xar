@@ -693,7 +693,7 @@ class MyClass(GeneratedClass):
                                 </BehaviorLayer>
                             </Timeline>
                         </Box>
-                        <Box name="Animated Say" id="3" localization="8" tooltip="Say some text with animations. Note that you must open the box to enter the text." x="360" y="21">
+                        <Box name="Animated Say" id="3" localization="8" tooltip="Say some text with animations. Note that you must open the box to enter the text." x="403" y="12">
                             <bitmap>media/images/box/interaction/say.png</bitmap>
                             <script language="4">
                                 <content>
@@ -911,7 +911,7 @@ class MyClass(GeneratedClass):
                             </Timeline>
                             <Resource name="Speech" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="_DB検索" id="1" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="523" y="54">
+                        <Box name="_DB検索" id="1" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="525" y="26">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -961,50 +961,6 @@ class MyClass(GeneratedClass):
                             <Output name="habitat" type="3" type_size="1" nature="1" inner="0" tooltip="" id="9" />
                             <Output name="size" type="3" type_size="1" nature="1" inner="0" tooltip="" id="10" />
                             <Parameter name="name" inherits_from_parent="0" content_type="3" value="" default_value="" custom_choice="0" tooltip="" id="11" />
-                        </Box>
-                        <Box name="_画像URL（テスト用）" id="10" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="151" y="263">
-                            <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[# /!\ Generated content. Do not edit!
-class MyClass(GeneratedClass):
-	def __init__(self):
-		GeneratedClass.__init__(self)
-
-	def onInput_onStart(self):
-		self.onStopped("https://www.tokyo-zoo.net/Encyclopedia/LSpecies/XL.AJIAZOU_1003.jpg")]]>
-</content>
-                            </script>
-                            <pluginContent>
-                                <text>
-                                    <![CDATA[https://www.tokyo-zoo.net/Encyclopedia/LSpecies/XL.AJIAZOU_1003.jpg]]>
-</text>
-                            </pluginContent>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                            <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
-                            <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
-                        </Box>
-                        <Box name="_動物名（テスト用）" id="11" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="147" y="155">
-                            <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[# /!\ Generated content. Do not edit!
-class MyClass(GeneratedClass):
-	def __init__(self):
-		GeneratedClass.__init__(self)
-
-	def onInput_onStart(self):
-		self.onStopped("キリン")]]>
-</content>
-                            </script>
-                            <pluginContent>
-                                <text>
-                                    <![CDATA[キリン]]>
-</text>
-                            </pluginContent>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                            <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
-                            <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
                         </Box>
                         <Box name="_タブレットに画像表示" id="7" localization="8" tooltip="こちらに概要を記入" x="712" y="154">
                             <bitmap>media/images/box/box-diagram.png</bitmap>
@@ -1328,7 +1284,7 @@ class MyClass(GeneratedClass):
                             </Timeline>
                             <Resource name="Speech" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="_形態素解析" id="6" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="411" y="355">
+                        <Box name="_形態素解析" id="6" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="230" y="53">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -1349,10 +1305,10 @@ class MyClass(GeneratedClass):
         pass
 
     def onInput_onStart(self, p):
-        url = 'http://218.251.224.154:5000/' + p
+        url = 'http://218.251.224.110:5000/entry/' + p
         response = urllib2.urlopen(url)
 
-        self.animalName(str(response))
+        self.animalName(response.read())
 
     def onInput_onStop(self):
         self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
@@ -1364,7 +1320,7 @@ class MyClass(GeneratedClass):
                             <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
                             <Output name="animalName" type="3" type_size="1" nature="1" inner="0" tooltip="" id="4" />
                         </Box>
-                        <Box name="_質問テスト" id="8" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="138" y="371">
+                        <Box name="_質問テスト" id="8" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="204" y="267">
                             <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
                             <script language="4">
                                 <content>
@@ -1386,245 +1342,15 @@ class MyClass(GeneratedClass):
                             <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
                             <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
                         </Box>
-                        <Box name="_音声認識" id="12" localization="8" tooltip="こちらに概要を記入" x="218" y="22">
-                            <bitmap>media/images/box/box-diagram.png</bitmap>
-                            <script language="4">
-                                <content>
-                                    <![CDATA[]]>
-</content>
-                            </script>
-                            <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                            <Input name="Wait (1)_onStart" type="1" type_size="1" nature="2" inner="0" tooltip="This input has been automatically generated&#x0A;by converting several boxes into a single box." id="2" />
-                            <Input name="AnimalExpert/RecFlag" type="0" type_size="1" nature="4" stm_value_name="AnimalExpert/RecFlag" inner="1" tooltip="AnimalExpert/RecFlag desc" id="3" />
-                            <Output name="TextEdit1_onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="This output has been automatically generated&#x0A;by converting several boxes into a single box." id="4" />
-                            <Timeline enable="0">
-                                <BehaviorLayer name="behavior_layer1">
-                                    <BehaviorKeyframe name="keyframe1" index="1">
-                                        <Diagram>
-                                            <Box name="Raise Event" id="2" localization="8" tooltip="Stores in NAOqi&apos;s shared memory the given value at the given key, and spreads the event to all its subscribers." x="430" y="12">
-                                                <bitmap>media/images/box/sensors/STM.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-        pass
-
-    def onLoad(self):
-        self.memory = ALProxy("ALMemory")
-
-    def onUnload(self):
-        self.memory = None
-
-    def onInput_onStart(self, p):
-        self.memory.raiseEvent(self.getParameter("key"), p)
-        self.onStopped(p)
-
-    def onInput_onStop(self):
-        self.onUnload() #~ it is recommended to call onUnload of this box in a onStop method, as the code written in onUnload is used to stop the box as well
-        pass]]>
-</content>
-                                                </script>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                                                <Input name="onStart" type="0" type_size="1" nature="2" inner="0" tooltip="Receives the value to be inserted as an event in ALMemory." id="2" />
-                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
-                                                <Output name="onStopped" type="0" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished. It contains the inserted value in ALMemory." id="4" />
-                                                <Output name="onError" type="3" type_size="1" nature="1" inner="0" tooltip="Output when error is raised by the behavior. Contains the error message." id="5" />
-                                                <Parameter name="key" inherits_from_parent="0" content_type="3" value="AnimalExpert/RecFlag" default_value="MyApplication/MyData" custom_choice="0" tooltip="" id="6" />
-                                            </Box>
-                                            <Box name="Text Edit" id="3" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="154" y="28">
-                                                <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[# /!\ Generated content. Do not edit!
-class MyClass(GeneratedClass):
-	def __init__(self):
-		GeneratedClass.__init__(self)
-
-	def onInput_onStart(self):
-		self.onStopped("running")]]>
-</content>
-                                                </script>
-                                                <pluginContent>
-                                                    <text>
-                                                        <![CDATA[running]]>
-</text>
-                                                </pluginContent>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                                                <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
-                                                <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
-                                            </Box>
-                                            <Box name="Text Edit (1)" id="4" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="419" y="269">
-                                                <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[# /!\ Generated content. Do not edit!
-class MyClass(GeneratedClass):
-	def __init__(self):
-		GeneratedClass.__init__(self)
-
-	def onInput_onStart(self):
-		self.onStopped("stop")]]>
-</content>
-                                                </script>
-                                                <pluginContent>
-                                                    <text>
-                                                        <![CDATA[stop]]>
-</text>
-                                                </pluginContent>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                                                <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
-                                                <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
-                                            </Box>
-                                            <Box name="Log" id="1" localization="8" tooltip="Prompt the message in the debug window. You can set a prefix and a priority&#x0A;for the message in the parameters." x="278" y="193">
-                                                <bitmap>media/images/box/print.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self, False)
-
-    def onLoad(self):
-        #~ puts code for box initialization here
-        pass
-
-    def onUnload(self):
-        #~ puts code for box cleanup here
-        pass
-
-    def onInput_message(self, p):
-        sPriority = self.getParameter("Priority")
-        sMessage = self.getParameter("Message prefix")
-        if( sMessage != "" and p != None ):
-            sMessage += ": "
-        if( p != None ):
-            sMessage += str(p)
-        if( sPriority == "Fatal" ):
-            self.logger.fatal( sMessage )
-        elif( sPriority == "Error" ):
-            self.logger.error( sMessage )
-        elif( sPriority == "Warning" ):
-            self.logger.warning( sMessage )
-        elif( sPriority == "Info" ):
-            self.logger.info( sMessage )
-        elif( sPriority == "Debug" ):
-            self.logger.debug( sMessage )
-        self.onDone()]]>
-</content>
-                                                </script>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                                                <Input name="message" type="0" type_size="1" nature="1" inner="0" tooltip='The message to print or a &quot;Bang&quot; to only print the message set as parameter.' id="2" />
-                                                <Output name="onDone" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
-                                                <Parameter name="Message prefix" inherits_from_parent="0" content_type="3" value="Message text" default_value="Message text" custom_choice="0" tooltip="Enter the text you want to print before the input message." id="4" />
-                                                <Parameter name="Priority" inherits_from_parent="0" content_type="3" value="Info" default_value="Info" custom_choice="0" tooltip="Enter the priority of your message. If you select error, the box will get red when it will be stimulated." id="5">
-                                                    <Choice value="Fatal" />
-                                                    <Choice value="Error" />
-                                                    <Choice value="Warning" />
-                                                    <Choice value="Info" />
-                                                    <Choice value="Debug" />
-                                                </Parameter>
-                                            </Box>
-                                            <Box name="Only Once" id="5" localization="8" tooltip="This box&apos;s output is stimulated only the first time the onSignal input is.&#x0A;&#x0A;Note: It is reset when the diagram containing the box is unloaded." x="353" y="171">
-                                                <bitmap>media/images/box/loop.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self, False)
-
-    def onLoad(self):
-        self.bFirstTime = True
-        self.beforeRunning = False
-
-    def onUnload(self):
-        self.bFirstTime = True
-        self.beforeRunning = False
-
-    def onInput_onSignal(self, p):
-        if (!self.beforeRunning && p == "running")
-            self.beforeRunning = True
-        if( self.beforeRunning && self.bFirstTime):
-            self.bFirstTime = False
-            self.firstTime()]]>
-</content>
-                                                </script>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                                                <Input name="onSignal" type="3" type_size="1" nature="1" inner="0" tooltip="The signal that must pass only once." id="2" />
-                                                <Output name="firstTime" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent first time the onSignal input is stimulated." id="3" />
-                                            </Box>
-                                            <Box name="Python Script" id="6" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="488" y="137">
-                                                <bitmap>media/images/box/box-python-script.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self)
-
-    def onLoad(self):
-        #put initialization code here
-        pass
-
-    def onUnload(self):
-        #put clean-up code here
-        pass
-
-    def onInput_onStart(self, p):
-        #self.onStopped(p) #activate the output of the box
-        if (p != "running")
-            self.onStopped(p)
-
-    def onInput_onStop(self):
-        self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
-        self.onStopped(p) #activate the output of the box]]>
-</content>
-                                                </script>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                                                <Input name="onStart" type="3" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
-                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Box behavior stops when a signal is received on this input." id="3" />
-                                                <Output name="onStopped" type="3" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
-                                            </Box>
-                                            <Box name="Text Edit (2)" id="7" localization="8" tooltip="Send the text you entered when the input is stimulated." plugin="textedit_plugin" x="55" y="262">
-                                                <bitmap>media/images/box/interaction/vocabulary.png</bitmap>
-                                                <script language="4">
-                                                    <content>
-                                                        <![CDATA[# /!\ Generated content. Do not edit!
-class MyClass(GeneratedClass):
-	def __init__(self):
-		GeneratedClass.__init__(self)
-
-	def onInput_onStart(self):
-		self.onStopped("Animal/Expert/RecFlagがrunning以外になった時を検知して文字列を返せるようにしたい")]]>
-</content>
-                                                </script>
-                                                <pluginContent>
-                                                    <text>
-                                                        <![CDATA[Animal/Expert/RecFlagがrunning以外になった時を検知して文字列を返せるようにしたい]]>
-</text>
-                                                </pluginContent>
-                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
-                                                <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
-                                                <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
-                                            </Box>
-                                            <Link inputowner="2" indexofinput="2" outputowner="3" indexofoutput="3" />
-                                            <Link inputowner="0" indexofinput="4" outputowner="4" indexofoutput="3" />
-                                            <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                            <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="3" />
-                                            <Link inputowner="6" indexofinput="2" outputowner="0" indexofoutput="3" />
-                                        </Diagram>
-                                    </BehaviorKeyframe>
-                                </BehaviorLayer>
-                            </Timeline>
-                        </Box>
                         <Link inputowner="0" indexofinput="4" outputowner="9" indexofoutput="4" />
-                        <Link inputowner="1" indexofinput="11" outputowner="11" indexofoutput="3" />
                         <Link inputowner="9" indexofinput="2" outputowner="1" indexofoutput="4" />
                         <Link inputowner="6" indexofinput="2" outputowner="8" indexofoutput="3" />
-                        <Link inputowner="11" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="1" indexofinput="2" outputowner="3" indexofoutput="4" />
-                        <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="7" indexofinput="2" outputowner="1" indexofoutput="6" />
-                        <Link inputowner="12" indexofinput="2" outputowner="2" indexofoutput="3" />
-                        <Link inputowner="3" indexofinput="2" outputowner="12" indexofoutput="4" />
+                        <Link inputowner="1" indexofinput="11" outputowner="6" indexofoutput="4" />
+                        <Link inputowner="3" indexofinput="2" outputowner="6" indexofoutput="4" />
+                        <Link inputowner="2" indexofinput="2" outputowner="0" indexofoutput="2" />
+                        <Link inputowner="8" indexofinput="2" outputowner="2" indexofoutput="3" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
