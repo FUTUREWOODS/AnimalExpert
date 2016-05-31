@@ -6,6 +6,7 @@ import numpy as np
 import wave
 import random
 import json
+import re
 import sys
 import requests
 from watsonC import Watson
@@ -29,10 +30,10 @@ class WatsonMain():
 
     def target(self):
         self.Wstream.run()
-        
-    def start(self):
-        self.Wstream.start()
-        
+
+    def state(self):
+        return self.Wstream.state
+
     def send(self,input):
         self.Wstream.send(input, is_binary=True)
 
@@ -70,28 +71,50 @@ if __name__ == '__main__':
  myBroker = ALBroker("myBroker","0.0.0.0",0,PEPPER_IP,9559)
  PepperModule = PepperModuleClass("PepperModule")
  PepperModule.startMemory()
- h = WatsonMain(Wstream)
  time.sleep(3)
  PepperModule.startRecord()
+ output=[]
+ h=None
+ 
  while stream.is_active():
      try:
-       input = stream.read(CHUNK,exception_on_overflow = False)
-       output=PepperModule.inputBuff
-       if len(output)>=1:
-           output2=np.array(output[:16000])
-           del PepperModule.inputBuff[:16000]
-           stream.write(output2.tostring())
-           if PepperModule.status=="running":
-               h.send(output2.tostring())
-       txt,flag =h.Wstream.result()
-       if flag==1:
-         print txt
-         PepperModule.raiseEvent("recognized")
+       #input = stream.read(CHUNK,exception_on_overflow = False)
+       
+       if PepperModule.RecStatus=="run": #イベントが"runだったら"
+         if h is None:
+           h = WatsonMain(Wstream)
+         if h.state() == "open":
+           PepperModule.raiseRecEvent("running") #ここでイベントを”runnig”立てる
+         while h.state() == "open":
+             output +=PepperModule.inputBuff
+             if len(output)>=16000: #buffが溜まっていたら
+               output2=np.array(output[:16000])
+               del output[:16000]
+               stream.write(output2.tostring())
+               if PepperModule.RecStatus=="listen": #イベントが"runだったら"
+                  h.send(output2.tostring()) #watsonに送信
+                  txt,flag =h.Wstream.result()
+                  if flag==1:
+                    txt=re.sub(" ","",txt)
+                    h.stop()
+                    h=None
+                    print txt
+                    PepperModule.raiseRecEvent(txt) #ここでイベントを”recognized”立てる
+                    break
+               elif PepperModule.RecStatus=="stop": #イベントが"runだったら"
+                    h.stop()
+                    h=None
+                    break
+ 
+ 
      except KeyboardInterrupt:
        print "終了中"
        break
  myBroker.shutdown()
- h.stop()
+ try:
+   h.stop()
+ except KeyboardInterrupt:
+   print "watson failed"
  stream.stop_stream()
  stream.close()
  p.terminate()
