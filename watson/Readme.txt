@@ -1,10 +1,6 @@
 実行ファイル
-watson5P.py
+watson6P.py
   ....watsonで音声認識し、かつその内容をPepperに喋らせ、またPepperのマイクをストリーミングして流す
-watson5G.py
-  ...watsonで音声認識のみ
-watson5Q.py
-  ...watsonで音声認識を行い、かつ単語が「チーズ」であれば、写真を撮って保存する。opencvが必要。
 
 
 
