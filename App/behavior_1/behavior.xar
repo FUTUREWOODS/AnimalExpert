@@ -1334,19 +1334,19 @@ class MyClass(GeneratedClass):
 		GeneratedClass.__init__(self)
 
 	def onInput_onStart(self):
-		self.onStopped("ライオンについて教えて")]]>
+		self.onStopped("豚について教えて")]]>
 </content>
                             </script>
                             <pluginContent>
                                 <text>
-                                    <![CDATA[ライオンについて教えて]]>
+                                    <![CDATA[豚について教えて]]>
 </text>
                             </pluginContent>
                             <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
                             <Input name="onStart" type="1" type_size="1" nature="1" inner="0" tooltip="To send the text on the output." id="2" />
                             <Output name="onStopped" type="3" type_size="1" nature="2" inner="0" tooltip="The text you entered." id="3" />
                         </Box>
-                        <Box name="Animated Say (2)" id="4" localization="8" tooltip="Say some text with animations. Note that you must open the box to enter the text." x="654" y="393">
+                        <Box name="Animated Say (2)" id="4" localization="8" tooltip="Say some text with animations. Note that you must open the box to enter the text." x="777" y="284">
                             <bitmap>media/images/box/interaction/say.png</bitmap>
                             <script language="4">
                                 <content>
@@ -1564,7 +1564,7 @@ class MyClass(GeneratedClass):
                             </Timeline>
                             <Resource name="Speech" type="Lock" timeout="0" />
                         </Box>
-                        <Box name="Only Once" id="5" localization="8" tooltip="This box&apos;s output is stimulated only the first time the onSignal input is.&#x0A;&#x0A;Note: It is reset when the diagram containing the box is unloaded." x="425" y="331">
+                        <Box name="Only Once" id="5" localization="8" tooltip="This box&apos;s output is stimulated only the first time the onSignal input is.&#x0A;&#x0A;Note: It is reset when the diagram containing the box is unloaded." x="416" y="322">
                             <bitmap>media/images/box/loop.png</bitmap>
                             <script language="4">
                                 <content>
@@ -1588,7 +1588,7 @@ class MyClass(GeneratedClass):
                             <Input name="onSignal" type="1" type_size="1" nature="1" inner="0" tooltip="The signal that must pass only once." id="2" />
                             <Output name="firstTime" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent first time the onSignal input is stimulated." id="3" />
                         </Box>
-                        <Box name="_画像検索" id="10" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="204" y="377">
+                        <Box name="_画像検索" id="10" localization="8" tooltip="This box contains a basic python script and can be used to create any python script box you would like.&#x0A;&#x0A;To edit its script, double-click on it." x="630" y="375">
                             <bitmap>media/images/box/box-python-script.png</bitmap>
                             <script language="4">
                                 <content>
@@ -1714,7 +1714,7 @@ class MyClass(GeneratedClass):
                             <Output name="onStopped" type="3" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="4" />
                             <Parameter name="name" inherits_from_parent="0" content_type="3" value="" default_value="" custom_choice="0" tooltip="" id="5" />
                         </Box>
-                        <Box name="Log" id="11" localization="8" tooltip="Prompt the message in the debug window. You can set a prefix and a priority&#x0A;for the message in the parameters." x="329" y="452">
+                        <Box name="Log" id="11" localization="8" tooltip="Prompt the message in the debug window. You can set a prefix and a priority&#x0A;for the message in the parameters." x="778" y="386">
                             <bitmap>media/images/box/print.png</bitmap>
                             <script language="4">
                                 <content>
