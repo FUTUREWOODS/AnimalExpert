@@ -11,7 +11,6 @@
         <File name="" src="lib/.DS_Store" />
         <File name="" src="05_ExtractKeywords/.python-version" />
         <File name="" src=".DS_Store" />
-        <File name="" src=".metadata" />
         <File name="getPic" src="07_WebCrawling/BingCrawling/getPic/getPic.py" />
         <File name="0001" src="07_WebCrawling/BingCrawling/getPic/豚/0001.jpg" />
         <File name="0002" src="07_WebCrawling/BingCrawling/getPic/豚/0002.jpg" />
