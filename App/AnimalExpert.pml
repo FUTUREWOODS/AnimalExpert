@@ -6,9 +6,6 @@
     </BehaviorDescriptions>
     <Dialogs />
     <Resources>
-        <File name="" src="html/.DS_Store" />
-        <File name="" src="html/images/.DS_Store" />
-        <File name="" src="lib/.DS_Store" />
         <File name="" src="05_ExtractKeywords/.python-version" />
         <File name="" src=".DS_Store" />
         <File name="getPic" src="07_WebCrawling/BingCrawling/getPic/getPic.py" />
@@ -27,5 +24,7 @@
         <File name="readme" src="lib/readme.md" />
     </Resources>
     <Topics />
-    <IgnoredPaths />
+    <IgnoredPaths>
+        <Path src="html/.DS_Store" />
+    </IgnoredPaths>
 </Package>
