@@ -11,6 +11,7 @@ class watsonStream:
    DEFAULT_START_PARAMS = {
         'action': 'start',
         'content-type': 'audio/l16; rate=16000; channels=1',
+        'max_alternatives': 10,
         'interim_results': True,
         'continuous': True,
         'timestamps': True
@@ -24,6 +25,7 @@ class watsonStream:
         self.start_params = dict(self.DEFAULT_START_PARAMS, **start_params)
         self.ws = None
         self.speachtxt="ううん"
+        self.confidence=0.1
         self.flag=0
 
    def run(self, on_message=None, on_error=None, on_close=None, on_open=None, keep_running=True):
@@ -49,14 +51,29 @@ class watsonStream:
    def send(self, data, is_binary=False):
         self.ws.send(data, ABNF.OPCODE_BINARY if is_binary else ABNF.OPCODE_TEXT)
 
-   def _on_message(self, ws, message):
+   def _on_message2(self, ws, message):
         d = json.loads(message)
-        words = [[x["transcript"].encode("shift-jis"), x["confidence"]] for x in d["results"][0]["alternatives"]]
+        print d
+        words = [[x["transcript"].encode("euc-jp"), x["confidence"]] for x in d["results"][0]["alternatives"]]
         for word in words:
-          txt= word[0].decode("shift-jis")
+          txt= word[0].decode("euc-jp").encode("utf-8")
           self.speachtxt = txt
           self.flag=1
-            
+   
+   def _on_message(self, stream, message):
+        d = json.loads(message)
+        if not d or not d["results"] or len(d["results"]) == 0 or not d["results"][0]["final"]:
+            return
+        print "Recognishon finished"
+        txt=""
+        for x in d["results"][0]["alternatives"]:
+             txt=txt+","+x["transcript"]
+             
+        self.speachtxt = txt
+        self.flag=1
+
+
+
    def _on_error(self, user_func, ws, error):
         print "error"
 

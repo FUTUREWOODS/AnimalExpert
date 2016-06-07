@@ -4,13 +4,11 @@ import json
 import wave
 import requests
 import re
-from watsonStream import watsonStream
+from watsonStreamX import watsonStream
 
 
 class Watson:
-    u"""
-    Watson Bluemixのラッパークラス
-    """
+
     VERSION = "v1"
 
     def __init__(self, username, password, url):

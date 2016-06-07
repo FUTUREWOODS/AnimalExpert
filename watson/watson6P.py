@@ -8,6 +8,7 @@ import random
 import json
 import re
 import sys
+import time
 import requests
 from watsonC import Watson
 from PepperStream import PepperModuleClass
@@ -15,13 +16,12 @@ import threading
 import time
 from naoqi import (ALProxy, ALBroker, ALModule)
 
-PEPPER_IP = "192.168.1.6"
+PEPPER_IP = "192.168.1.20"
 
 class WatsonMain():
 
     def __init__(self,Wstream):
         self.stop_event = threading.Event() #停止させるかのフラグ
-        self.inc_event = threading.Event()  #なんかのフラグ
         #スレッドの作成と開始
         self.Wstream=Wstream
         self.thread = threading.Thread(target = self.target)
@@ -81,12 +81,15 @@ if __name__ == '__main__':
        #input = stream.read(CHUNK,exception_on_overflow = False)
        
        if PepperModule.RecStatus=="run": #イベントが"runだったら"
+         PepperModule.inputBuff=[]
          if h is None:
            h = WatsonMain(Wstream)
          if h.state() == "open":
+           time.sleep(1)
            PepperModule.raiseRecEvent("running") #ここでイベントを”runnig”立てる
+           PepperModule.inputBuff=[]
          while h.state() == "open":
-             output +=PepperModule.inputBuff
+             output =PepperModule.inputBuff
              if len(output)>=16000: #buffが溜まっていたら
                output2=np.array(output[:16000])
                del output[:16000]
@@ -102,6 +105,7 @@ if __name__ == '__main__':
                     PepperModule.raiseRecEvent(txt) #ここでイベントを”recognized”立てる
                     break
                elif PepperModule.RecStatus=="stop": #イベントが"runだったら"
+                    print "be stopped"
                     h.stop()
                     h=None
                     break

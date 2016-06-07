@@ -9,7 +9,7 @@ import pyaudio
 from naoqi import (ALProxy, ALBroker, ALModule)
 
 class PepperModuleClass(ALModule):
-    def __init__(self, name, PEPPER_IP = "192.168.1.6"):
+    def __init__(self, name, PEPPER_IP = "192.168.1.20"):
         ALModule.__init__(self, name)
         #
         self.PEPPER_IP=PEPPER_IP
@@ -18,41 +18,43 @@ class PepperModuleClass(ALModule):
         self.mem = ALProxy("ALMemory")
         self.tts.setLanguage("Japanese")
         self.inputBuff=[]
-        self.status="stop"
+        self.RecStatus="stop"
         #self.tts.say("腹話術を開始します")
-        print "PepperModule Initialyze"
-    
-    def startRecord(self):
-        
         #
         self.pepperMicrophone = ALProxy("ALAudioDevice", self.PEPPER_IP, 9559)
         #
         # 16KHzのモノラル音声でFront(3)マイク１つのみを指定
         self.pepperMicrophone.setClientPreferences(self.getName(), 16000, 3, 0)
-        #
+        print "PepperModule Initialyze"
+    
+    def startRecord(self):
         # 録音開始
         self.pepperMicrophone.subscribe(self.getName())
     
     def startMemory(self):
-        self.mem.subscribeToEvent("AnimalExpert/RecFlag",self.getName(), "pythondatachanged")
+        self.mem.subscribeToEvent("AnimalExpert/RecFlag",self.getName(), "pythonRecchanged")
     
-    def pythondatachanged(self, key, value, message):
+    def pythonRecchanged(self, key, value, message):
         """callback when data change"""
         print "FLAG: "+value
-        self.status=value
-    
-    def raiseEvent(self,message):
-        self.mem.raiseEvent("AnimalExpert/RecFlag",message)
-    
+        self.RecStatus=value
+
+    def raiseRecEvent(self,message):
+        self.mem.raiseEvent("AnimalExpert/RecFlag",message.encode('utf-8'))
+
+    def raiseTokensEvent(self,message):
+        self.mem.raiseEvent("AnimalExpert/Tokens",message.encode('utf-8'))
+
     def talk(self,txt):
         print txt
         self.tts.say(txt)
     
     def processRemote(self, inputChannels, inputSamples, timeStamp, inputBuff):
-        self.inputBuff.append(inputBuff)
+        self.inputBuff +=inputBuff
     
-    def stop(self):
+    def stopRecord(self):
         # 終了
+        self.inputBuff=[]
         self.pepperMicrophone.unsubscribe(self.getName())
         time.sleep(1)
-        self.tts.say("腹話術を終了しました")
+
