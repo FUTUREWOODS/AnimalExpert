@@ -22,9 +22,9 @@
         <File name="bootstrap.min" src="html/js/bootstrap.min.js" />
         <File name="jquery-1.12.3.min" src="html/js/jquery-1.12.3.min.js" />
         <File name="readme" src="lib/readme.md" />
+        <File name="" src="07_WebCrawling/.DS_Store" />
+        <File name="" src="07_WebCrawling/BingCrawling/.DS_Store" />
     </Resources>
     <Topics />
-    <IgnoredPaths>
-        <Path src="html/.DS_Store" />
-    </IgnoredPaths>
+    <IgnoredPaths />
 </Package>
