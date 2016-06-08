@@ -1,19 +1,32 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="animalexpert-67e8d8" version="0.0.0">
+<package uuid="biz_futurewoods_animalexpert" version="1.0.0">
  <names>
-  <name lang="en_US">AnimalExpert</name>
+  <name lang="en_US">AnimalExpert Pepper</name>
+  <name lang="ja_JP">どうぶつはかせ　ペッパーくん</name>
  </names>
  <supportedLanguages>
   <language>en_US</language>
+  <language>ja_JP</language>
  </supportedLanguages>
  <descriptionLanguages>
   <language>en_US</language>
+  <language>ja_JP</language>
  </descriptionLanguages>
  <contents>
   <behaviorContent path="behavior_1">
-   <userRequestable/>
    <nature>interactive</nature>
+   <names>
+    <name lang="en_US">interactive</name>
+    <name lang="ja_JP">インタラクティブ</name>
+   </names>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
  </contents>
+ <requirements>
+  <naoqiRequirement maxVersion="2" minVersion="2.4"/>
+  <robotRequirement model="JULIETTE_Y20"/>
+ </requirements>
 </package>
