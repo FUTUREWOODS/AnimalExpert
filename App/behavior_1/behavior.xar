@@ -2262,16 +2262,19 @@ class MyClass(GeneratedClass):
                                                 <Input name="signal3" type="3" type_size="1" nature="1" inner="0" tooltip="" id="4" />
                                                 <Output name="query_GET" type="3" type_size="1" nature="2" inner="0" tooltip="Signal sent when both inputs have been stimulated." id="5" />
                                             </Box>
-                                            <Box name="Wait For Signals" id="14" localization="8" tooltip="Wait for both inputs to be stimulated before stimulating its output." x="352" y="20">
-                                                <bitmap>media/images/box/wait.png</bitmap>
+                                            <Box name="Parse Description" id="14" localization="8" tooltip="Wait for both inputs to be stimulated before stimulating its output." x="352" y="20">
+                                                <bitmap>media/images/box/box-python-script.png</bitmap>
                                                 <script language="4">
                                                     <content>
-                                                        <![CDATA[class MyClass(GeneratedClass):
+                                                        <![CDATA[import re
+
+class MyClass(GeneratedClass):
     def __init__(self):
         GeneratedClass.__init__(self, False)
 
     def onLoad(self):
         self.ok = [False]*2
+        self.pattern = re.compile(r'(.*?)')
 
     def onUnload(self):
         #puts code for box cleanup here
@@ -2283,8 +2286,11 @@ class MyClass(GeneratedClass):
         for bOk in self.ok:
             bOutput = bOutput and bOk
         if( bOutput ):
-            self.signalsReceived(self.ok[0] + "について説明します。"+ self.ok[1])
+            self.signalsReceived(self.ok[0] + "について説明します。"+ self.parse(self.ok[1]))
             self.ok = [False]*2
+
+    def parse(self, txt):
+        return re.sub(r'（.*?）', '', self.ok[1])
 
     def onInput_signal1(self, name):
         self.onStart(1, name)
