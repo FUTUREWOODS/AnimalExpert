@@ -19,14 +19,11 @@
     <name lang="en_US">interactive</name>
     <name lang="ja_JP">インタラクティブ</name>
    </names>
-   <triggerSentences/>
-   <loadingResponses/>
-   <autonomous/>
    <permissions/>
   </behaviorContent>
  </contents>
  <requirements>
-  <naoqiRequirement maxVersion="2" minVersion="2.4"/>
+  <naoqiRequirement minVersion="2.4" maxVersion="2"/>
   <robotRequirement model="JULIETTE_Y20"/>
  </requirements>
 </package>
