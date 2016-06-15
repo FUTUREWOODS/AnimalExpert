@@ -32,6 +32,7 @@
         <File name="glyphicons-halflings-regular" src="html/fonts/glyphicons-halflings-regular.woff" />
         <File name="glyphicons-halflings-regular" src="html/fonts/glyphicons-halflings-regular.woff2" />
         <File name="katakana_input" src="html/katakana_input.html" />
+        <File name="thinking" src="html/images/thinking.jpg" />
     </Resources>
     <Topics />
     <IgnoredPaths />
