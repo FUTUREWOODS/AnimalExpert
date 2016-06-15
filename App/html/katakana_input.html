@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>KATAKATA INPUT</title>
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=device-width,initial-scale = 1,minimum-scale = 1,maximum-scale = 1" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery-1.12.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="/libs/qimessaging/2/qimessaging.js"></script>-->
+    <script src="/libs/qimessaging/1.0/qimessaging.js"></script>
+
+    <link rel="stylesheet" href="css/katakana_input.css" />
+
+    <script>
+        var session = new QiSession();
+        function submitToPepper(event_name, val){ 
+            session.service("ALMemory").done(function (ALMemory) {
+                ALMemory.raiseEvent(event_name, val);
+            });
+        }
+
+        /*---ボタン押下時処理---*/
+        function pressed(c){
+            var text = $("input").val();
+            if(c=="BS")
+                var new_text = text.substring(0,text.length-1);
+            else if(c=="゛")
+                var new_text = text.substring(0,text.length-1) + dakuten(text.substr(-1,1))
+            else if(c=="゜")
+                var new_text = text.substring(0,text.length-1) + handakuten(text.substr(-1,1))
+            else
+                var new_text = text + c;
+
+            $("input").val(new_text);
+            setAutocomplete(new_text)
+        }
+
+        function dakuten(c){
+            if(c=='カ') return 'ガ';if(c=='キ') return 'ギ';if(c=='ク') return 'グ';if(c=='ケ') return 'ゲ';if(c=='コ') return 'ゴ';if(c=='サ') return 'ザ';if(c=='シ') return 'ジ';if(c=='ス') return 'ズ';if(c=='セ') return 'ゼ';if(c=='ソ') return 'ゾ';if(c=='タ') return 'ダ';if(c=='チ') return 'ヂ';if(c=='ツ') return 'ヅ';if(c=='テ') return 'デ';if(c=='ト') return 'ド';if(c=='ハ') return 'バ';if(c=='ヒ') return 'ビ';if(c=='フ') return 'ブ';if(c=='ヘ') return 'ベ';if(c=='ホ') return 'ボ';return c;
+        }
+
+        function handakuten(c){
+            if(c=='ハ') return 'パ';if(c=='ヒ') return 'ピ';if(c=='フ') return 'プ';if(c=='ヘ') return 'ペ';if(c=='ホ') return 'ポ';return c;
+        }
+
+        function submitText(text){ 
+            submitToPepper("PepperQiMessaging/searchText", text);
+        }
+
+        function setAutocomplete(text){
+            $.ajax({
+                type: "GET",
+                url: "http://218.251.224.154:5000/autocomplete/"+text, //XXX
+                dataType: "jsonp",
+                jsonpCallback: "f",
+                success: function(animals){
+                    $("#suggestions").empty()
+                    var len = animals.length;
+                    for (var i=0; i < len; i++)
+                        $("#suggestions").append(
+                            $('<div class="suggestion btn btn-default btn-lg" onclick="submitText(\''+ animals[i] +'\')"><span>' + animals[i] + '</span></div>')
+                        );
+
+                }
+             });
+        }
+        /*------*/
+    </script>
+</head>
+
+<body>
+    <header>
+
+    </header>
+    <div id="contents">
+        <div class="flex-column">
+            <!-- テキストボックス & BSキー -->
+            <div class="flex-row">
+                    <input id="input" readonly="readonly"></input>
+                    <div id="backspace_button" class="btn btn-danger" onclick="pressed('BS')">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    </div>
+            </div>
+
+            <!-- 50音入力キー -->
+            <div class="flex-row-reverse">
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('ア');" >
+                        <p>ア</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('イ');" >
+                        <p>イ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ウ');" >
+                        <p>ウ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('エ');" >
+                        <p>エ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('オ');" >
+                        <p>オ</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('カ');" >
+                        <p>カ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('キ');" >
+                        <p>キ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ク');" >
+                        <p>ク</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ケ');" >
+                        <p>ケ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('コ');" >
+                        <p>コ</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('サ');" >
+                        <p>サ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('シ');" >
+                        <p>シ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ス');" >
+                        <p>ス</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('セ');" >
+                        <p>セ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ソ');" >
+                        <p>ソ</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('タ');" >
+                        <p>タ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('チ');" >
+                        <p>チ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ツ');" >
+                        <p>ツ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('テ');" >
+                        <p>テ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ト');" >
+                        <p>ト</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('ナ');" >
+                        <p>ナ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ニ');" >
+                        <p>ニ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ヌ');" >
+                        <p>ヌ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ネ');" >
+                        <p>ネ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ノ');" >
+                        <p>ノ</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('ハ');" >
+                        <p>ハ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ヒ');" >
+                        <p>ヒ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('フ');" >
+                        <p>フ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ヘ');" >
+                        <p>ヘ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ホ');" >
+                        <p>ホ</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('マ');" >
+                        <p>マ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ミ');" >
+                        <p>ミ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ム');" >
+                        <p>ム</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('メ');" >
+                        <p>メ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('モ');" >
+                        <p>モ</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('ヤ');" >
+                        <p>ヤ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ユ');" >
+                        <p>ユ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ヨ');" >
+                        <p>ヨ</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('ラ');" >
+                        <p>ラ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('リ');" >
+                        <p>リ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ル');" >
+                        <p>ル</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('レ');" >
+                        <p>レ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ロ');" >
+                        <p>ロ</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('ワ');" >
+                        <p>ワ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ヲ');" >
+                        <p>ヲ</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('ン');" >
+                        <p>ン</p>
+                    </div>
+                    
+                </div>
+                
+                <div class="flex-column">
+                    
+                    <div class="kana-button" onclick="pressed('゛');" >
+                        <p>゛</p>
+                    </div>
+                    
+                    <div class="kana-button" onclick="pressed('゜');" >
+                        <p>゜</p>
+                    </div>
+                    
+                </div>
+                
+            </div>
+
+            <!-- 確定キー -->
+            <div id="suggestions" class="flex-column">
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

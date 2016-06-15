@@ -1,0 +1,67 @@
+body{
+    font-family: Verdana;
+}
+
+#contents {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+#input{
+    width: 90%;
+    height: 70px;
+    font-size: 60px;
+}
+#backspace_button{
+    width: 10%;
+    height: 70px;
+    font-size: 40px;
+}
+
+/*
+#submit_button{
+    height: 70px;
+    font-size: 40px;
+}*/
+
+.suggestion{
+    font-size: 40px;
+}
+
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.flex-row-reverse {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+}
+
+.kana-button {
+    height: 80px;
+    width: 80px;
+    margin: 5px;
+
+    background-color: cornsilk;
+    border-radius: 5px;
+    border: solid medium #ccc;
+
+    font-size: 50px;
+    color: #333;
+
+    /*flex*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

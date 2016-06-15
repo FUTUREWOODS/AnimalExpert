@@ -25,6 +25,13 @@
         <File name="" src="lib/.DS_Store" />
         <File name="" src=".DS_Store" />
         <File name=".image.html" src="html/.image.html.swp" />
+        <File name="katakana_input" src="html/css/katakana_input.css" />
+        <File name="glyphicons-halflings-regular" src="html/fonts/glyphicons-halflings-regular.eot" />
+        <File name="glyphicons-halflings-regular" src="html/fonts/glyphicons-halflings-regular.svg" />
+        <File name="glyphicons-halflings-regular" src="html/fonts/glyphicons-halflings-regular.ttf" />
+        <File name="glyphicons-halflings-regular" src="html/fonts/glyphicons-halflings-regular.woff" />
+        <File name="glyphicons-halflings-regular" src="html/fonts/glyphicons-halflings-regular.woff2" />
+        <File name="katakana_input" src="html/katakana_input.html" />
     </Resources>
     <Topics />
     <IgnoredPaths />
