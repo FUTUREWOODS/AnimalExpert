@@ -33,6 +33,8 @@
         <File name="glyphicons-halflings-regular" src="html/fonts/glyphicons-halflings-regular.woff2" />
         <File name="katakana_input" src="html/katakana_input.html" />
         <File name="thinking" src="html/images/thinking.jpg" />
+        <File name="animalexpert" src="html/images/animalexpert.jpg" />
+        <File name="icon" src="icon.png" />
     </Resources>
     <Topics />
     <IgnoredPaths />

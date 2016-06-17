@@ -1,9 +1,21 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="biz_futurewoods_animalexpert" version="1.0.0">
+<package uuid="biz_futurewoods_animalexpert" version="1.0.1">
  <names>
   <name lang="en_US">AnimalExpert Pepper</name>
+  <name lang="en_US-x-scrald">AnimalExpert Pepper</name>
   <name lang="ja_JP">どうぶつはかせ　ペッパーくん</name>
+  <name lang="ja_JP-x-scrald">どうぶつはかせ　ペッパーくん</name>
  </names>
+ <descriptions>
+  <description lang="en_US">
+
+</description>
+  <description lang="en_US-x-scrald">
+
+</description>
+  <description lang="ja_JP">本アプリケーションは、Pepperが動物園に設置されることを想定しています。ユーザーがPepperに対して動物名を含む発話をした時、またはPepperの胸のタブレットから動物名を入力した時に、Pepperがその動物に関する詳細な説明を行います。</description>
+  <description lang="ja_JP-x-scrald">本アプリケーションは、Pepperが動物園に設置されることを想定しています。ユーザーがPepperに対して動物名を含む発話をした時、またはPepperの胸のタブレットから動物名を入力した時に、Pepperがその動物に関する詳細な説明を行います。</description>
+ </descriptions>
  <supportedLanguages>
   <language>en_US</language>
   <language>ja_JP</language>
@@ -17,8 +29,13 @@
    <nature>interactive</nature>
    <names>
     <name lang="en_US">interactive</name>
+    <name lang="en_US-x-scrald">interactive</name>
     <name lang="ja_JP">インタラクティブ</name>
+    <name lang="ja_JP-x-scrald">インタラクティブ</name>
    </names>
+   <triggerSentences/>
+   <loadingResponses/>
+   <autonomous/>
    <permissions/>
   </behaviorContent>
  </contents>
