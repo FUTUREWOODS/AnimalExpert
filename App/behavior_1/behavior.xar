@@ -1550,6 +1550,7 @@ class MyClass(GeneratedClass):
         self.description(description)
         self.animalName(name)
         self.imageURL(img_url)
+        self.location("35.71642608370434,139.77241694927215")
 
     def onInput_onStop(self):
         self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
@@ -1567,9 +1568,10 @@ class MyClass(GeneratedClass):
                                                 <Output name="habitat" type="3" type_size="1" nature="1" inner="0" tooltip="" id="9" />
                                                 <Output name="size" type="3" type_size="1" nature="1" inner="0" tooltip="" id="10" />
                                                 <Output name="onError" type="1" type_size="1" nature="1" inner="0" tooltip="" id="11" />
-                                                <Parameter name="name" inherits_from_parent="0" content_type="3" value="ライオン" default_value="" custom_choice="0" tooltip="" id="12" />
+                                                <Output name="location" type="3" type_size="1" nature="1" inner="0" tooltip="" id="12" />
+                                                <Parameter name="name" inherits_from_parent="0" content_type="3" value="ライオン" default_value="" custom_choice="0" tooltip="" id="13" />
                                             </Box>
-                                            <Box name="_タブレットに画像表示" id="7" localization="8" tooltip="こちらに概要を記入" x="333" y="187">
+                                            <Box name="_タブレットに画像表示" id="7" localization="8" tooltip="こちらに概要を記入" x="328" y="215">
                                                 <bitmap>media/images/box/box-diagram.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -1730,57 +1732,8 @@ class MyClass(GeneratedClass):
                                                                     <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Box behavior starts when a signal is received on this input." id="2" />
                                                                     <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
                                                                 </Box>
-                                                                <Box name="Log" id="1" localization="8" tooltip="Prompt the message in the debug window. You can set a prefix and a priority&#x0A;for the message in the parameters." x="397" y="65">
-                                                                    <bitmap>media/images/box/print.png</bitmap>
-                                                                    <script language="4">
-                                                                        <content>
-                                                                            <![CDATA[class MyClass(GeneratedClass):
-    def __init__(self):
-        GeneratedClass.__init__(self, False)
-
-    def onLoad(self):
-        #~ puts code for box initialization here
-        pass
-
-    def onUnload(self):
-        #~ puts code for box cleanup here
-        pass
-
-    def onInput_message(self, p):
-        sPriority = self.getParameter("Priority")
-        sMessage = self.getParameter("Message prefix")
-        if( sMessage != "" and p != None ):
-            sMessage += ": "
-        if( p != None ):
-            sMessage += str(p)
-        if( sPriority == "Fatal" ):
-            self.logger.fatal( sMessage )
-        elif( sPriority == "Error" ):
-            self.logger.error( sMessage )
-        elif( sPriority == "Warning" ):
-            self.logger.warning( sMessage )
-        elif( sPriority == "Info" ):
-            self.logger.info( sMessage )
-        elif( sPriority == "Debug" ):
-            self.logger.debug( sMessage )
-        self.onDone()]]>
-</content>
-                                                                    </script>
-                                                                    <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
-                                                                    <Input name="message" type="0" type_size="1" nature="1" inner="0" tooltip='The message to print or a &quot;Bang&quot; to only print the message set as parameter.' id="2" />
-                                                                    <Output name="onDone" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
-                                                                    <Parameter name="Message prefix" inherits_from_parent="0" content_type="3" value="Message text" default_value="Message text" custom_choice="0" tooltip="Enter the text you want to print before the input message." id="4" />
-                                                                    <Parameter name="Priority" inherits_from_parent="0" content_type="3" value="Info" default_value="Info" custom_choice="0" tooltip="Enter the priority of your message. If you select error, the box will get red when it will be stimulated." id="5">
-                                                                        <Choice value="Fatal" />
-                                                                        <Choice value="Error" />
-                                                                        <Choice value="Warning" />
-                                                                        <Choice value="Info" />
-                                                                        <Choice value="Debug" />
-                                                                    </Parameter>
-                                                                </Box>
                                                                 <Link inputowner="23" indexofinput="2" outputowner="0" indexofoutput="2" />
                                                                 <Link inputowner="9" indexofinput="2" outputowner="0" indexofoutput="2" />
-                                                                <Link inputowner="1" indexofinput="2" outputowner="0" indexofoutput="2" />
                                                             </Diagram>
                                                         </BehaviorKeyframe>
                                                     </BehaviorLayer>
@@ -1891,7 +1844,7 @@ class MyClass(GeneratedClass):
                                                 </Timeline>
                                                 <Resource name="Speech" type="Lock" timeout="0" />
                                             </Box>
-                                            <Box name="Wait For Signals and Build GET query" id="12" localization="8" tooltip="Wait for both inputs to be stimulated before stimulating its output." x="192" y="206">
+                                            <Box name="Wait For Signals and Build GET query" id="12" localization="8" tooltip="Wait for both inputs to be stimulated before stimulating its output." x="191" y="225">
                                                 <bitmap>media/images/box/wait.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -1900,7 +1853,7 @@ class MyClass(GeneratedClass):
         GeneratedClass.__init__(self, False)
 
     def onLoad(self):
-        self.ok = [False]*3
+        self.ok = [False]*4
 
     def onUnload(self):
         #puts code for box cleanup here
@@ -1913,7 +1866,7 @@ class MyClass(GeneratedClass):
             bOutput = bOutput and bOk
         if( bOutput ):
             self.query_GET("&".join(self.ok))
-            self.ok = [False]*3
+            self.ok = [False]*4
 
 
     def onInput_signal1(self,title):
@@ -1923,14 +1876,18 @@ class MyClass(GeneratedClass):
         self.onStart(2,url)
 
     def onInput_signal3(self,description):
-        self.onStart(3,description)]]>
+        self.onStart(3,description)
+
+    def onInput_signal4(self,location):
+        self.onStart(4,location)]]>
 </content>
                                                 </script>
                                                 <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when Diagram is loaded." id="1" />
                                                 <Input name="signal1" type="3" type_size="1" nature="1" inner="0" tooltip="First signal to wait." id="2" />
                                                 <Input name="signal2" type="3" type_size="1" nature="1" inner="0" tooltip="Second signal to wait." id="3" />
                                                 <Input name="signal3" type="3" type_size="1" nature="1" inner="0" tooltip="" id="4" />
-                                                <Output name="query_GET" type="3" type_size="1" nature="2" inner="0" tooltip="Signal sent when both inputs have been stimulated." id="5" />
+                                                <Input name="signal4" type="3" type_size="1" nature="1" inner="0" tooltip="" id="5" />
+                                                <Output name="query_GET" type="3" type_size="1" nature="2" inner="0" tooltip="Signal sent when both inputs have been stimulated." id="6" />
                                             </Box>
                                             <Box name="Parse Description" id="14" localization="8" tooltip="Wait for both inputs to be stimulated before stimulating its output." x="352" y="20">
                                                 <bitmap>media/images/box/box-python-script.png</bitmap>
@@ -2018,7 +1975,7 @@ class MyClass(GeneratedClass):
                                                 <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="" id="3" />
                                                 <Output name="onStopped" type="3" type_size="1" nature="1" inner="0" tooltip='Returns the emotional reaction found after a few seconds.&#x0A;Values can be:&#x0A;- &quot;positive&quot;&#x0A;- &quot;neutral&quot;&#x0A;- &quot;negative&quot;&#x0A;- &quot;unknown&quot;&#x0A;&#x0A;' id="4" />
                                                 <Parameter name="Event label" inherits_from_parent="0" content_type="3" value="biz_futurewoods_animalexpert/Search/Successed" default_value="joke_1" custom_choice="0" tooltip="Label of the event you want to analyse with user mood information." id="5" />
-                                                <Parameter name="Send to cloud" inherits_from_parent="0" content_type="0" value="0" default_value="0" tooltip="If checked, this box will automatically send the output to cloud, tagged with the label given above." id="6" />
+                                                <Parameter name="Send to cloud" inherits_from_parent="0" content_type="0" value="1" default_value="0" tooltip="If checked, this box will automatically send the output to cloud, tagged with the label given above." id="6" />
                                             </Box>
                                             <Box name="Show Image" id="13" localization="8" tooltip="display an image on the screen&#x0A;&#x0A;V1.0.0&#x0A;" x="58" y="204">
                                                 <bitmap>media/images/box/interaction/rec_movie.png</bitmap>
@@ -2115,20 +2072,111 @@ class MyClass(GeneratedClass):
                                                 <Output name="onStopped" type="1" type_size="1" nature="1" inner="0" tooltip="Signal sent when box behavior is finished." id="6" />
                                                 <Parameter name="ImageUrl" inherits_from_parent="0" content_type="3" value="images/animalexpert.jpg" default_value="" custom_choice="0" tooltip='path of the image inside the &quot;html&quot; folder (e.g. &quot;/images/myimage.png&quot;' id="7" />
                                             </Box>
+                                            <Box name="Wait" id="6" localization="8" tooltip="Wait a moment before sending a signal on the output. &#x0A;Can be stopped anytime. &#x0A;Stimulating the input again before output is activated restarts the waiting period.&#x0A;" x="608" y="114">
+                                                <bitmap>media/images/box/wait.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onLoad(self):
+        self.waiting = None
+
+    def onUnload(self):
+        self.cancelWaiting()
+
+    def triggerOutput(self):
+        self.timerOutput()
+
+    def cancelWaiting(self):
+        if self.waiting:
+            self.waiting.cancel()
+        self.waiting = None
+
+    def onInput_onStart(self):
+        self.cancelWaiting()
+        import qi
+        self.waiting = qi.async(self.triggerOutput, delay=int(self.getParameter("Timeout (s)") * 1000 * 1000))
+
+    def onInput_onStop(self):
+        if self.getParameter("Trigger timerOutput if cancelled") and self.waiting and self.waiting.isRunning():
+            self.timerOutput()
+        self.onUnload()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="onStart" type="1" type_size="1" nature="2" inner="0" tooltip="Start the Wait box with the configured timeout value." id="2" />
+                                                <Input name="onStop" type="1" type_size="1" nature="3" inner="0" tooltip="Stop the wait and stimulate the output." id="3" />
+                                                <Output name="timerOutput" type="1" type_size="1" nature="1" inner="0" tooltip="Send a bang once time set in parameters is elapsed, or if the box is stopped and the appropriate parameter is set." id="4" />
+                                                <Parameter name="Timeout (s)" inherits_from_parent="0" content_type="2" value="5" default_value="1" min="0" max="5000" tooltip="Duration the box waits before stimulating the output." id="5" />
+                                                <Parameter name="Trigger timerOutput if cancelled" inherits_from_parent="0" content_type="0" value="0" default_value="1" tooltip="If the box is currently waiting and cancelled, output will be stimulated." id="6" />
+                                            </Box>
+                                            <Box name="Log" id="2" localization="8" tooltip="Prompt the message in the debug window. You can set a prefix and a priority&#x0A;for the message in the parameters." x="330" y="319">
+                                                <bitmap>media/images/box/print.png</bitmap>
+                                                <script language="4">
+                                                    <content>
+                                                        <![CDATA[class MyClass(GeneratedClass):
+    def __init__(self):
+        GeneratedClass.__init__(self, False)
+
+    def onLoad(self):
+        #~ puts code for box initialization here
+        pass
+
+    def onUnload(self):
+        #~ puts code for box cleanup here
+        pass
+
+    def onInput_message(self, p):
+        sPriority = self.getParameter("Priority")
+        sMessage = self.getParameter("Message prefix")
+        if( sMessage != "" and p != None ):
+            sMessage += ": "
+        if( p != None ):
+            sMessage += str(p)
+        if( sPriority == "Fatal" ):
+            self.logger.fatal( sMessage )
+        elif( sPriority == "Error" ):
+            self.logger.error( sMessage )
+        elif( sPriority == "Warning" ):
+            self.logger.warning( sMessage )
+        elif( sPriority == "Info" ):
+            self.logger.info( sMessage )
+        elif( sPriority == "Debug" ):
+            self.logger.debug( sMessage )
+        self.onDone()]]>
+</content>
+                                                </script>
+                                                <Input name="onLoad" type="1" type_size="1" nature="0" inner="1" tooltip="Signal sent when diagram is loaded." id="1" />
+                                                <Input name="message" type="0" type_size="1" nature="1" inner="0" tooltip='The message to print or a &quot;Bang&quot; to only print the message set as parameter.' id="2" />
+                                                <Output name="onDone" type="1" type_size="1" nature="2" inner="0" tooltip="Signal sent when box behavior is finished." id="3" />
+                                                <Parameter name="Message prefix" inherits_from_parent="0" content_type="3" value="Message text" default_value="Message text" custom_choice="0" tooltip="Enter the text you want to print before the input message." id="4" />
+                                                <Parameter name="Priority" inherits_from_parent="0" content_type="3" value="Info" default_value="Info" custom_choice="0" tooltip="Enter the priority of your message. If you select error, the box will get red when it will be stimulated." id="5">
+                                                    <Choice value="Fatal" />
+                                                    <Choice value="Error" />
+                                                    <Choice value="Warning" />
+                                                    <Choice value="Info" />
+                                                    <Choice value="Debug" />
+                                                </Parameter>
+                                            </Box>
                                             <Link inputowner="1" indexofinput="2" outputowner="3" indexofoutput="4" />
                                             <Link inputowner="12" indexofinput="3" outputowner="1" indexofoutput="6" />
-                                            <Link inputowner="12" indexofinput="4" outputowner="1" indexofoutput="4" />
                                             <Link inputowner="12" indexofinput="2" outputowner="1" indexofoutput="5" />
-                                            <Link inputowner="7" indexofinput="2" outputowner="12" indexofoutput="5" />
-                                            <Link inputowner="14" indexofinput="3" outputowner="1" indexofoutput="4" />
+                                            <Link inputowner="7" indexofinput="2" outputowner="12" indexofoutput="6" />
                                             <Link inputowner="14" indexofinput="2" outputowner="1" indexofoutput="5" />
                                             <Link inputowner="9" indexofinput="2" outputowner="14" indexofoutput="4" />
                                             <Link inputowner="11" indexofinput="2" outputowner="9" indexofoutput="4" />
-                                            <Link inputowner="1" indexofinput="12" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="1" indexofinput="13" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="0" indexofinput="3" outputowner="1" indexofoutput="11" />
-                                            <Link inputowner="0" indexofinput="4" outputowner="11" indexofoutput="4" />
                                             <Link inputowner="3" indexofinput="2" outputowner="0" indexofoutput="2" />
                                             <Link inputowner="13" indexofinput="2" outputowner="0" indexofoutput="2" />
+                                            <Link inputowner="6" indexofinput="2" outputowner="11" indexofoutput="4" />
+                                            <Link inputowner="0" indexofinput="4" outputowner="6" indexofoutput="4" />
+                                            <Link inputowner="12" indexofinput="4" outputowner="1" indexofoutput="4" />
+                                            <Link inputowner="14" indexofinput="3" outputowner="1" indexofoutput="4" />
+                                            <Link inputowner="2" indexofinput="2" outputowner="12" indexofoutput="6" />
+                                            <Link inputowner="12" indexofinput="5" outputowner="1" indexofoutput="12" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
@@ -2150,7 +2198,7 @@ class MyClass(GeneratedClass):
                                 <BehaviorLayer name="behavior_layer1">
                                     <BehaviorKeyframe name="keyframe1" index="1">
                                         <Diagram>
-                                            <Box name="Speech Reco." id="5" localization="8" tooltip="Recognize a word from a list of words set in the box parameters.&#x0A;&#x0A;V1.1.0&#x0A;" x="334" y="41">
+                                            <Box name="Speech Reco." id="5" localization="8" tooltip="Recognize a word from a list of words set in the box parameters.&#x0A;&#x0A;V1.1.0&#x0A;" x="333" y="25">
                                                 <bitmap>media/images/box/interaction/ear.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -2528,7 +2576,7 @@ class MyClass(GeneratedClass):
                                                     <Choice value="Debug" />
                                                 </Parameter>
                                             </Box>
-                                            <Box name="_タブレットに入力画面を表示" id="15" localization="8" tooltip="こちらに概要を記入" x="336" y="180">
+                                            <Box name="_タブレットに入力画面を表示" id="15" localization="8" tooltip="こちらに概要を記入" x="326" y="159">
                                                 <bitmap>media/images/box/box-diagram.png</bitmap>
                                                 <script language="4">
                                                     <content>
@@ -3823,7 +3871,6 @@ class MyClass(GeneratedClass):
                         <Link inputowner="2" indexofinput="2" outputowner="5" indexofoutput="3" />
                         <Link inputowner="6" indexofinput="2" outputowner="9" indexofoutput="3" />
                         <Link inputowner="9" indexofinput="2" outputowner="2" indexofoutput="3" />
-                        <Link inputowner="5" indexofinput="2" outputowner="0" indexofoutput="2" />
                         <Link inputowner="4" indexofinput="2" outputowner="6" indexofoutput="3" />
                         <Link inputowner="9" indexofinput="2" outputowner="17" indexofoutput="3" />
                         <Link inputowner="3" indexofinput="2" outputowner="9" indexofoutput="4" />
@@ -3831,6 +3878,7 @@ class MyClass(GeneratedClass):
                         <Link inputowner="1" indexofinput="2" outputowner="17" indexofoutput="4" />
                         <Link inputowner="0" indexofinput="4" outputowner="1" indexofoutput="4" />
                         <Link inputowner="17" indexofinput="2" outputowner="4" indexofoutput="4" />
+                        <Link inputowner="5" indexofinput="2" outputowner="0" indexofoutput="2" />
                     </Diagram>
                 </BehaviorKeyframe>
             </BehaviorLayer>
