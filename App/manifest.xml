@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<package uuid="biz_futurewoods_animalexpert" version="1.0.1">
+<package version="1.0.1" uuid="biz_futurewoods_animalexpert">
  <names>
   <name lang="en_US">AnimalExpert Pepper</name>
   <name lang="en_US-x-scrald">AnimalExpert Pepper</name>

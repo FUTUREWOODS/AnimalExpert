@@ -21,8 +21,6 @@
         <File name="jquery-1.12.3.min" src="html/js/jquery-1.12.3.min.js" />
         <File name="readme" src="lib/readme.md" />
         <File name="" src="html/.DS_Store" />
-        <File name="" src="html/images/.DS_Store" />
-        <File name="" src="lib/.DS_Store" />
         <File name="" src=".DS_Store" />
         <File name=".image.html" src="html/.image.html.swp" />
         <File name="katakana_input" src="html/css/katakana_input.css" />
@@ -37,5 +35,7 @@
         <File name="icon" src="icon.png" />
     </Resources>
     <Topics />
-    <IgnoredPaths />
+    <IgnoredPaths>
+        <Path src="07_WebCrawling/PyCherryPick" />
+    </IgnoredPaths>
 </Package>

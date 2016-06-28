@@ -1545,12 +1545,14 @@ class MyClass(GeneratedClass):
         data = rjson[u'0']
         name = data[u'name'].encode('utf-8')
         description = data[u'description'].encode('utf-8')
+        longitude = data[u'longitude']
+        latitude = data[u'latitude']
         img_url = data[u'img_url'].encode('utf-8')
         img_url = img_url.replace("http","https",1)
         self.description(description)
         self.animalName(name)
         self.imageURL(img_url)
-        self.location("35.71642608370434,139.77241694927215")
+        self.location(",".join(map(str,[longitude, latitude])))
 
     def onInput_onStop(self):
         self.onUnload() #it is recommended to reuse the clean-up as the box is stopped
@@ -2175,8 +2177,8 @@ class MyClass(GeneratedClass):
                                             <Link inputowner="0" indexofinput="4" outputowner="6" indexofoutput="4" />
                                             <Link inputowner="12" indexofinput="4" outputowner="1" indexofoutput="4" />
                                             <Link inputowner="14" indexofinput="3" outputowner="1" indexofoutput="4" />
-                                            <Link inputowner="2" indexofinput="2" outputowner="12" indexofoutput="6" />
                                             <Link inputowner="12" indexofinput="5" outputowner="1" indexofoutput="12" />
+                                            <Link inputowner="2" indexofinput="2" outputowner="1" indexofoutput="11" />
                                         </Diagram>
                                     </BehaviorKeyframe>
                                 </BehaviorLayer>
